@@ -129,6 +129,14 @@ namespace Collisions {
 			
 		return false;
 	}
+
+	static bool collide(sf::Sprite& a, sf::Sprite& b) {
+		return a.getGlobalBounds().intersects(b.getGlobalBounds());
+	}
+
+	static bool collideRect(sf::FloatRect a, sf::FloatRect b) {
+		return a.intersects(b);
+	}
 }
 
 

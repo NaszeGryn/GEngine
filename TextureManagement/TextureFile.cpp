@@ -20,9 +20,6 @@ namespace Texture {
 
 	// delete
 	TextureFile::~TextureFile() {
-		for (int i = 0; i < this->textures.size(); i++) {
-			delete this->textures[i].texture;
-		}
 		this->textures.clear();
 	}
 
@@ -31,8 +28,6 @@ namespace Texture {
 	void TextureFile::Interpret(VL::VL_file& file) {
 		for (int i = 0; i < file.getList()->size(); i++) {
 			// interpret textures
-			Texture t;
-
 			std::string title = file.getList()->at(i).title;
 			std::string value = file.getList()->at(i).value;
 
@@ -61,10 +56,11 @@ namespace Texture {
 				}
 			}
 			else { // new texture
-				t.ID = title;
-				t.texture = new sf::Texture(GraphFunc::loadHQTexture(value));
+				this->textures.push_back(Texture());
+				this->textures[this->textures.size() - 1].ID = title;
 
-				// animated and animation_time remain default
+				// create a new texture
+				this->textures[this->textures.size() - 1].loadTexture(value);
 			}
 
 		}
