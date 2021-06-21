@@ -191,6 +191,11 @@ namespace Math {
 		return sf::Vector2f(atof(v1.c_str()), atof(v2.c_str()));
 	}
 
+	// get sprite size
+	static sf::Vector2f getSpriteSize(sf::Sprite& sprite) {
+		return sf::Vector2f(sprite.getGlobalBounds().width, sprite.getGlobalBounds().height);
+	}
+
 	// sf::Vector2f to string
 	static std::string vec2fToStr(sf::Vector2f vector) {
 		return std::to_string(vector.x) + ", " + std::to_string(vector.y);
